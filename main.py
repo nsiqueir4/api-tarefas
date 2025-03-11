@@ -1,6 +1,24 @@
 from flask import Flask, request
+from tarefa import Tarefa
 
 app = Flask(__name__)
+
+tarefas = [
+    Tarefa(task_id=1,
+           titulo="Estudar JavaScript",
+           descricao="Estudar JavaScript para aprender a construir evento",
+           status="em andamento",
+           prazo="2025-03-10",
+           prioridade="Alta",
+           responsavel="Nicolas"),
+    Tarefa(task_id=2,
+           titulo="Estudar JavaScript",
+           descricao="Estudar JavaScript para aprender a construir evento",
+           status="em andamento",
+           prazo="2025-03-10",
+           prioridade="Alta",
+           responsavel="Nicolas")
+]
 tarefas = [
     {
         "id": 1,
@@ -52,6 +70,9 @@ def update_task(task_id):
     task_search['titulo'] = task_body.get('titulo')
     task_search['descricao'] = task_body.get('descricao')
     task_search['status'] = task_body.get('status')
+    task_search['prazo'] = task_body.get('prazo')
+    task_search['prioridade'] = task_body.get('prioridade')
+    task_search['responsavel'] = task_body.get('responsavel')
 
     return task_search
 #Explicação do que aconteceu: primeiro criei a rota e coloquei o metodo 'delete'. O global é só para falar que mudaremos a tarefa no código inteiro, ou seja, não será uma modificação local. Depois usei o for e o in para criar uma listaque exclui a tarefa de acordo como id. Depois só coloquei um JSON pra falar que foi deletado. De resto eu coloquei no insomnia
